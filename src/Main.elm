@@ -3,6 +3,9 @@ module Main exposing (main)
 import Bootstrap.Button as Button
 import Bootstrap.ButtonGroup as ButtonGroup
 import Bootstrap.Grid exposing (..)
+import Bootstrap.Grid.Col as Col
+import Bootstrap.Grid.Row
+import Bootstrap.ListGroup as ListGroup
 import Browser
 import Html exposing (Html, h1, header, p, text)
 import Html.Attributes exposing (attribute, class)
@@ -31,7 +34,7 @@ init _ =
 subtitles =
     [ "(A reasonable subtitle) => text"
     , "(idea) => code"
-    , "idea -> code -> webpage"
+    , "ninja : idea -> code -> product"
     ]
 
 
@@ -75,6 +78,30 @@ myGeneration tup =
             MyString ""
 
 
+projects =
+    row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
+        [ col [ Col.topMd ]
+            [ ListGroup.ul
+                [ ListGroup.li [] [ text "ArmorCompat?" ]
+                , ListGroup.li [] [ text "idk" ]
+                , ListGroup.li [] [ text "potate" ]
+                ]
+            ]
+        ]
+
+
+counter model =
+    row []
+        [ col []
+            [ ButtonGroup.buttonGroup []
+                [ ButtonGroup.button [ Button.primary, Button.attrs [ onClick Increment ] ] [ text "+1" ]
+                , ButtonGroup.button [] [ text <| String.fromInt model.count ]
+                , ButtonGroup.button [ Button.danger, Button.attrs [ onClick Decrement ] ] [ text "-1" ]
+                ]
+            ]
+        ]
+
+
 view model =
     container [ attribute "id" "container" ]
         --        [ CDN.stylesheet
@@ -86,11 +113,8 @@ view model =
                     ]
                 ]
             ]
-        , ButtonGroup.buttonGroup []
-            [ ButtonGroup.button [ Button.primary, Button.attrs [ onClick Increment ] ] [ text "+1" ]
-            , ButtonGroup.button [] [ text <| String.fromInt model.count ]
-            , ButtonGroup.button [ Button.danger, Button.attrs [ onClick Decrement ] ] [ text "-1" ]
-            ]
+        , counter model
+        , projects
         ]
 
 
