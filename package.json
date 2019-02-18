@@ -4,9 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "format": "elm-format src/"
+    "sass": "sass src/styles/main.scss dist/style.css",
+    "build": "elm make src/Main.elm --output dist/elm.js",
+    "prod": "elm make src/Main.elm --optimize --output dist/elm.js",
+    "format": "elm-format src/",
+    "watcher": "watch 'yarn sass' src/styles & watch 'yarn build' src --ignoreDirectoryPattern=/src/styles/"
   },
   "devDependencies": {
-    "elm-format": "^0.8.1"
+    "bootstrap": "^4.3.1",
+    "elm-format": "^0.8.1",
+    "sass": "^1.17.0",
+    "watch": "^1.0.2"
   }
 }
