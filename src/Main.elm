@@ -7,8 +7,8 @@ import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
 import Bootstrap.ListGroup as ListGroup
 import Browser
-import Html exposing (Html, h1, header, p, text)
-import Html.Attributes exposing (attribute, class)
+import Html exposing (Html, a, h1, header, p, text)
+import Html.Attributes exposing (attribute, class, href)
 import Html.Events exposing (onClick)
 import Random exposing (Generator)
 import Random.List exposing (choose)
@@ -82,7 +82,11 @@ projects =
     row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
         [ col [ Col.topMd ]
             [ ListGroup.ul
-                [ ListGroup.li [] [ text "ArmorCompat?" ]
+                [ ListGroup.li []
+                    [ a [ href "armout/" ]
+                        [ text "ArmorCompat ?"
+                        ]
+                    ]
                 , ListGroup.li [] [ text "idk" ]
                 , ListGroup.li [] [ text "potate" ]
                 ]
