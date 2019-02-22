@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "sass": "sass src/styles/main.scss dist/style.css",
+    "styles": "sass src/styles/main.scss dist/style.css",
     "build": "elm make src/Main.elm --output dist/elm.js",
-    "prod": "elm make src/Main.elm --optimize --output dist/elm.js && sass",
+    "prod": "elm make src/Main.elm --optimize --output dist/elm.js && yarn styles",
     "format": "elm-format src/",
     "watcher": "watch 'yarn sass' src/styles & watch 'yarn build' src --ignoreDirectoryPattern=/src/styles/"
   },
