@@ -8,7 +8,7 @@
     "build": "elm make src/Main.elm --output dist/elm.js",
     "prod": "elm make src/Main.elm --optimize --output dist/elm.js && yarn styles",
     "format": "elm-format src/",
-    "watcher": "watch 'yarn sass' src/styles & watch 'yarn build' src --ignoreDirectoryPattern=/src/styles/"
+    "watcher": "watch 'yarn styles' src/styles & watch 'yarn build' src --ignoreDirectoryPattern=/src/styles/"
   },
   "devDependencies": {
     "bootstrap": "^4.3.1",

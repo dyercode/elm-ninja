@@ -7,7 +7,7 @@ import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
 import Bootstrap.ListGroup as ListGroup
 import Browser
-import Html exposing (Html, a, h1, header, p, text)
+import Html exposing (Html, a, dd, dt, h1, header, p, text)
 import Html.Attributes exposing (attribute, class, href)
 import Html.Events exposing (onClick)
 import Random exposing (Generator)
@@ -83,8 +83,12 @@ projects =
         [ col [ Col.topMd ]
             [ ListGroup.ul
                 [ ListGroup.li []
-                    [ a [ href "armout/" ]
-                        [ text "ArmorCompat ?"
+                    [ dt []
+                        [ a [ href "armout/" ]
+                            [ text "ArmorCompat ?" ]
+                        ]
+                    , dd []
+                        [ text "An application to compare costs and bonuses of various armor configurations for flying in Pathfinder."
                         ]
                     ]
                 , ListGroup.li [] [ text "idk" ]
