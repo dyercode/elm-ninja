@@ -8,7 +8,7 @@ import Bootstrap.Grid.Row
 import Bootstrap.ListGroup as ListGroup
 import Browser
 import Html exposing (Html, a, dd, dt, h1, h3, header, li, p, text, ul)
-import Html.Attributes exposing (attribute, class, href, classList)
+import Html.Attributes exposing (attribute, class, classList, href)
 import Html.Events exposing (onClick)
 import Random exposing (Generator)
 import Random.List exposing (choose)
@@ -81,11 +81,12 @@ myGeneration tup =
 lgli attr value =
     li (class "list-group-item" :: attr) value
 
+
 projects =
     row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
         [ col [ Col.topMd ]
-            [ h3 [class "text-center"] [ text "Projects" ]
-            , ul [class "list-group list-group-flush"]
+            [ h3 [ class "text-center" ] [ text "Projects" ]
+            , ul [ class "list-group list-group-flush" ]
                 [ lgli []
                     [ dt []
                         [ a [ href "armout/" ]
@@ -103,6 +104,10 @@ projects =
                 , lgli []
                     [ dt [] [ text "Potato Clicker" ]
                     , dd [] [ text "Start of a clicker game. To learn React. React + Redux + Typescript" ]
+                    ]
+                , lgli []
+                    [ dt [] [ text "This site" ]
+                    , dd [] [ text "Elmerific. Continuously integrated" ]
                     ]
                 ]
             ]
