@@ -7,8 +7,8 @@ import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
 import Bootstrap.ListGroup as ListGroup
 import Browser
-import Html exposing (Html, a, dd, dt, h1, header, p, text)
-import Html.Attributes exposing (attribute, class, href)
+import Html exposing (Html, a, dd, dt, h1, h3, header, li, p, text, ul)
+import Html.Attributes exposing (attribute, class, href, classList)
 import Html.Events exposing (onClick)
 import Random exposing (Generator)
 import Random.List exposing (choose)
@@ -78,21 +78,32 @@ myGeneration tup =
             MyString ""
 
 
+lgli attr value =
+    li (class "list-group-item" :: attr) value
+
 projects =
     row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
         [ col [ Col.topMd ]
-            [ ListGroup.ul
-                [ ListGroup.li []
+            [ h3 [class "text-center"] [ text "Projects" ]
+            , ul [class "list-group list-group-flush"]
+                [ lgli []
                     [ dt []
                         [ a [ href "armout/" ]
-                            [ text "ArmorCompat ?" ]
+                            [ text "Armor Comparator" ]
                         ]
                     , dd []
-                        [ text "An application to compare costs and bonuses of various armor configurations for flying in Pathfinder."
+                        [ text """
+                        An application to compare costs and bonuses of various armor configurations for flying in Pathfinder.
+                        Originally written in raw html/css/javascript + knockout.  Currently largely the same but put together with
+                        webpack.
+                        """
                         ]
                     ]
-                , ListGroup.li [] [ text "idk" ]
-                , ListGroup.li [] [ text "potate" ]
+                , lgli [] [ text "idk" ]
+                , lgli []
+                    [ dt [] [ text "Potato Clicker" ]
+                    , dd [] [ text "Start of a clicker game. To learn React. React + Redux + Typescript" ]
+                    ]
                 ]
             ]
         ]
