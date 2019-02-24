@@ -1,30 +1,24 @@
 module Main exposing (main)
 
-import Bootstrap.Button as Button
-import Bootstrap.ButtonGroup as ButtonGroup
 import Bootstrap.Grid exposing (..)
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
-import Bootstrap.ListGroup as ListGroup
 import Browser
 import Html exposing (Html, a, dd, dt, h1, h3, header, li, p, text, ul)
-import Html.Attributes exposing (attribute, class, classList, href)
-import Html.Events exposing (onClick)
+import Html.Attributes exposing (attribute, class, href)
 import Random exposing (Generator)
 import Random.List exposing (choose)
 
 
 type alias Model =
-    { count : Int
-    , title : String
+    { title : String
     , subTitle : String
     }
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( { count = 0
-      , title = "Jon Dyer"
+    ( { title = "Jon Dyer"
       , subTitle = ""
       }
     , rlist subtitles
@@ -39,24 +33,12 @@ subtitles =
 
 
 type Msg
-    = Increment
-    | Decrement
-    | MyString String
+    = MyString String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Increment ->
-            ( { model | count = model.count + 1 }
-            , Cmd.none
-            )
-
-        Decrement ->
-            ( { model | count = model.count - 1 }
-            , Cmd.none
-            )
-
         MyString string ->
             ( { model | subTitle = string }
             , Cmd.none
@@ -114,18 +96,6 @@ projects =
         ]
 
 
-counter model =
-    row []
-        [ col []
-            [ ButtonGroup.buttonGroup []
-                [ ButtonGroup.button [ Button.primary, Button.attrs [ onClick Increment ] ] [ text "+1" ]
-                , ButtonGroup.button [] [ text <| String.fromInt model.count ]
-                , ButtonGroup.button [ Button.danger, Button.attrs [ onClick Decrement ] ] [ text "-1" ]
-                ]
-            ]
-        ]
-
-
 view model =
     container [ attribute "id" "container" ]
         --        [ CDN.stylesheet
@@ -137,7 +107,6 @@ view model =
                     ]
                 ]
             ]
-        , counter model
         , projects
         ]
 
