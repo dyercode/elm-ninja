@@ -102,7 +102,7 @@ projects =
                     ]
                 , lgli [] [ text "pong?" ]
                 , lgli []
-                    [ dt [] [ text "Potato Clicker" ]
+                    [ dt [] [ a [ href "potato/" ] [ text "Potato Clicker" ] ]
                     , dd [] [ text "Start of a clicker game. To learn React. React + Redux + Typescript" ]
                     ]
                 , lgli []
