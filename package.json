@@ -13,8 +13,8 @@
   "devDependencies": {
     "bootstrap": "^4.3.1",
     "elm": "^0.19.0-bugfix6",
-    "elm-format": "^0.8.1",
-    "sass": "^1.17.0",
+    "elm-format": "^0.8.2",
+    "sass": "^1.22.10",
     "watch": "^1.0.2"
   }
 }
