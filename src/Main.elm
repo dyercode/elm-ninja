@@ -1,13 +1,23 @@
 module Main exposing (main)
 
-import Bootstrap.Grid exposing (..)
+import Bootstrap.Grid exposing (col, container, row)
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
 import Browser
-import Html exposing (Html, a, dd, dt, h1, h3, header, li, p, text, ul)
+import Html exposing (Attribute, Html, a, dd, dt, h1, h3, header, li, p, text, ul)
 import Html.Attributes exposing (attribute, class, href)
-import Random exposing (Generator)
+import Random
 import Random.List exposing (choose)
+
+
+main : Program () Model Msg
+main =
+    Browser.element
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = \_ -> Sub.none
+        }
 
 
 type alias Model =
@@ -25,6 +35,7 @@ init _ =
     )
 
 
+subtitles : List String
 subtitles =
     [ "(A reasonable subtitle) => text"
     , "(idea) => code"
@@ -33,13 +44,13 @@ subtitles =
 
 
 type Msg
-    = MyString String
+    = Subtitle String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        MyString string ->
+        Subtitle string ->
             ( { model | subTitle = string }
             , Cmd.none
             )
@@ -54,16 +65,18 @@ myGeneration : ( Maybe String, List String ) -> Msg
 myGeneration tup =
     case Tuple.first tup of
         Just str ->
-            MyString str
+            Subtitle str
 
         Nothing ->
-            MyString ""
+            Subtitle ""
 
 
+lgli : List (Attribute msg) -> List (Html msg) -> Html msg
 lgli attr value =
     li (class "list-group-item" :: attr) value
 
 
+projects : Html msg
 projects =
     row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
         [ col [ Col.topMd ]
@@ -96,6 +109,7 @@ projects =
         ]
 
 
+view : Model -> Html msg
 view model =
     container [ attribute "id" "container" ]
         --        [ CDN.stylesheet
@@ -109,12 +123,3 @@ view model =
             ]
         , projects
         ]
-
-
-main =
-    Browser.element
-        { init = init
-        , view = view
-        , update = update
-        , subscriptions = \_ -> Sub.none
-        }
