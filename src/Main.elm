@@ -119,11 +119,7 @@ project projectData =
 view : Model -> Html msg
 view model =
     container [ attribute "id" "container" ]
-        [ row []
-            [ col []
-                [ jumbotron model
-                ]
-            ]
+        [ jumbotron model
         , projects
         ]
 
@@ -143,7 +139,11 @@ type alias Project =
 
 jumbotron : Model -> Html msg
 jumbotron model =
-    header [ class "jumbotron" ]
-        [ h1 [ class "display-4" ] [ text model.title ]
-        , p [ class "lead" ] [ text model.subTitle ]
+    row []
+        [ col []
+            [ header [ class "jumbotron" ]
+                [ h1 [ class "display-4" ] [ text model.title ]
+                , p [ class "lead" ] [ text model.subTitle ]
+                ]
+            ]
         ]
