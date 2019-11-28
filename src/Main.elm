@@ -76,30 +76,44 @@ projects =
         [ col [ Col.topMd ]
             [ h3 [ class "text-center" ] [ text "Projects" ]
             , ul [ class "list-group list-group-flush" ]
-                [ lgli []
-                    [ dt []
-                        [ a [ href "armout/" ]
-                            [ text "Armor Comparator" ]
-                        ]
-                    , dd []
-                        [ text """
+                [ project
+                    { title = "Armor Comparator"
+                    , link = Just "armout/"
+                    , description =
+                        """
                         An application to compare costs and bonuses of various armor configurations for flying in Pathfinder.
                         Originally written in raw html/css/javascript + knockout.  Currently largely the same but put together with
                         webpack.
                         """
-                        ]
-                    ]
-                , lgli [] [ text "pong?" ]
-                , lgli []
-                    [ dt [] [ a [ href "potato/" ] [ text "Potato Clicker" ] ]
-                    , dd [] [ text "Start of a clicker game. To learn React. React + Redux + Typescript" ]
-                    ]
-                , lgli []
-                    [ dt [] [ text "This site" ]
-                    , dd [] [ text "Elmerific. Continuously integrated" ]
-                    ]
+                    }
+                , project { title = "pong?", description = "", link = Nothing }
+                , project
+                    { title = "Potato Clicker"
+                    , link = Just "potato/"
+                    , description = "Start of a clicker game. To learn React. React + Redux + Typescript"
+                    }
+                , project
+                    { title = "This site"
+                    , description = "Elmerific. Continuously integrated"
+                    , link = Nothing
+                    }
                 ]
             ]
+        ]
+
+
+project : Project -> Html msg
+project projectData =
+    lgli []
+        [ dt []
+            (case projectData.link of
+                Just url ->
+                    [ a [ href url ] [ text projectData.title ] ]
+
+                Nothing ->
+                    [ text projectData.title ]
+            )
+        , dd [] [ text projectData.description ]
         ]
 
 
@@ -118,6 +132,13 @@ view model =
 type alias Model =
     { title : String
     , subTitle : String
+    }
+
+
+type alias Project =
+    { title : String
+    , link : Maybe String
+    , description : String
     }
 
 
