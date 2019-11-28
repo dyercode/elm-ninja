@@ -1,11 +1,10 @@
-module Main exposing (main)
+module Main exposing (jumbotron, main)
 
 import Bootstrap.Grid exposing (col, container, row)
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
 import Browser
-import Components exposing (Model, jumbotron)
-import Html exposing (Attribute, Html, a, dd, dt, h3, li, text, ul)
+import Html exposing (Attribute, Html, a, dd, dt, h1, h3, header, li, p, text, ul)
 import Html.Attributes exposing (attribute, class, href)
 import Random
 import Random.List exposing (choose)
@@ -113,4 +112,18 @@ view model =
                 ]
             ]
         , projects
+        ]
+
+
+type alias Model =
+    { title : String
+    , subTitle : String
+    }
+
+
+jumbotron : Model -> Html msg
+jumbotron model =
+    header [ class "jumbotron" ]
+        [ h1 [ class "display-4" ] [ text model.title ]
+        , p [ class "lead" ] [ text model.subTitle ]
         ]

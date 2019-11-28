@@ -1,8 +1,8 @@
 module Example exposing (..)
 
-import Components exposing (..)
 import Expect exposing (Expectation)
 import Fuzz exposing (Fuzzer, int, list, string)
+import Main exposing (jumbotron)
 import Test exposing (..)
 import Test.Html.Query as Query
 import Test.Html.Selector as Selector
