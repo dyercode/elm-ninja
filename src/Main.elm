@@ -4,7 +4,8 @@ import Bootstrap.Grid exposing (col, container, row)
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
 import Browser
-import Html exposing (Attribute, Html, a, dd, dt, h1, h3, header, li, p, text, ul)
+import Components exposing (Model, jumbotron)
+import Html exposing (Attribute, Html, a, dd, dt, h3, li, text, ul)
 import Html.Attributes exposing (attribute, class, href)
 import Random
 import Random.List exposing (choose)
@@ -20,18 +21,12 @@ main =
         }
 
 
-type alias Model =
-    { title : String
-    , subTitle : String
-    }
-
-
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( { title = "Jon Dyer"
       , subTitle = ""
       }
-    , rlist subtitles
+    , randomString subtitles
     )
 
 
@@ -56,8 +51,8 @@ update msg model =
             )
 
 
-rlist : List String -> Cmd Msg
-rlist l =
+randomString : List String -> Cmd Msg
+randomString l =
     Random.generate myGeneration (choose l)
 
 
@@ -112,13 +107,9 @@ projects =
 view : Model -> Html msg
 view model =
     container [ attribute "id" "container" ]
-        --        [ CDN.stylesheet
         [ row []
             [ col []
-                [ header [ class "jumbotron" ]
-                    [ h1 [ class "display-4" ] [ text model.title ]
-                    , p [ class "lead" ] [ text model.subTitle ]
-                    ]
+                [ jumbotron model
                 ]
             ]
         , projects
