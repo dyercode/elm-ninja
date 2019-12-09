@@ -70,33 +70,36 @@ lgli attr value =
     li (class "list-group-item" :: attr) value
 
 
-projects : Html msg
-projects =
+projectsDefinitions : List Project
+projectsDefinitions =
+    [ { title = "Armor Comparator"
+      , link = Just "armout/"
+      , description =
+            """
+            An application to compare costs and bonuses of various armor configurations for flying in Pathfinder.
+            Originally written in raw html/css/javascript + knockout.  Currently largely the same but put together with
+            webpack.
+            """
+      }
+    , { title = "pong?", description = "", link = Nothing }
+    , { title = "Potato Clicker"
+      , link = Just "potato/"
+      , description = "Start of a clicker game. To learn React. React + Redux + Typescript"
+      }
+    , { title = "This site"
+      , description = "Elmerific. Continuously integrated"
+      , link = Nothing
+      }
+    ]
+
+
+projectsSection : Html msg
+projectsSection =
     row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
         [ col [ Col.topMd ]
             [ h3 [ class "text-center" ] [ text "Projects" ]
             , ul [ class "list-group list-group-flush" ]
-                (List.map project
-                    [ { title = "Armor Comparator"
-                      , link = Just "armout/"
-                      , description =
-                            """
-                        An application to compare costs and bonuses of various armor configurations for flying in Pathfinder.
-                        Originally written in raw html/css/javascript + knockout.  Currently largely the same but put together with
-                        webpack.
-                        """
-                      }
-                    , { title = "pong?", description = "", link = Nothing }
-                    , { title = "Potato Clicker"
-                      , link = Just "potato/"
-                      , description = "Start of a clicker game. To learn React. React + Redux + Typescript"
-                      }
-                    , { title = "This site"
-                      , description = "Elmerific. Continuously integrated"
-                      , link = Nothing
-                      }
-                    ]
-                )
+                (List.map project projectsDefinitions)
             ]
         ]
 
@@ -120,7 +123,7 @@ view : Model -> Html msg
 view model =
     container [ attribute "id" "container" ]
         [ jumbotron model
-        , projects
+        , projectsSection
         ]
 
 
