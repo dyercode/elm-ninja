@@ -1,8 +1,9 @@
-language: elm
-elm: 
-  - elm0.19.1
+language: node_js
 elm-format: 0.8.3
 elm-test: 0.19.1
 node_js: '12'
+before_script:
+  - yarn global add elm-test@0.19.1
+  - yarn global add elm-format@0.8.3
 script:
   - yarn test
