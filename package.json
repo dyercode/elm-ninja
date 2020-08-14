@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "test": "elm-format --validate . && elm-test",
     "styles": "sass src/styles/main.scss dist/style.css",
     "build": "elm make src/Main.elm --output dist/elm.js",
     "prod": "elm make src/Main.elm --optimize --output dist/elm.js && yarn styles",

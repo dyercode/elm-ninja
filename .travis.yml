@@ -4,3 +4,5 @@ elm:
 elm-format: 0.8.3
 elm-test: 0.19.1
 node_js: '12'
+script:
+  - yarn test
