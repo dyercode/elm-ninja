@@ -21,5 +21,5 @@ jobs:
           branch: master
 stages:
   - test
-  - deploy
-  if: branch = master
+  - name: deploy
+    if: branch = master
