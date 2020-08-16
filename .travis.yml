@@ -5,10 +5,10 @@ node_js: '12'
 before_script:
   - yarn global add elm-test@0.19.1
   - yarn global add elm-format@0.8.3
-script:
-  - yarn test
 jobs:
   include:
+    - stage: test
+      script: yarn test
     - stage: deploy
       script: yarn prod && tar -zcvf elm-ninja.tar.gz dist
       deploy:
@@ -16,4 +16,8 @@ jobs:
         cleanup: false
         token: $GITHUB_TOKEN
         file: elm-ninja.tar.gz
-        
+        on:
+          branch: master
+stages:
+  - test
+  - deploy
