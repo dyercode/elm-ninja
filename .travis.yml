@@ -19,6 +19,7 @@ jobs:
         file: elm-ninja.tar.gz
         on:
           branch: master
+          tags: true
 stages:
   - test
   - deploy
