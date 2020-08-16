@@ -14,6 +14,7 @@ jobs:
       deploy:
         provider: releases
         cleanup: false
+        skip_cleanup: true #cleanup option not working, build suggesting this.
         token: $GITHUB_TOKEN
         file: elm-ninja.tar.gz
         on:
@@ -21,3 +22,4 @@ jobs:
 stages:
   - test
   - deploy
+  if: branch = master
