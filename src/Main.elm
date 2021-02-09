@@ -77,8 +77,7 @@ projectsDefinitions =
       , description =
             """
             An application to compare costs and bonuses of various armor configurations for flying in Pathfinder.
-            Originally written in raw html/css/javascript + knockout.  Currently largely the same but put together with
-            webpack.
+            Originally written in raw html/css/javascript + knockout.  Rewritten in Elm.
             """
       }
     , { title = "pong?", description = "", link = Nothing }
@@ -87,8 +86,12 @@ projectsDefinitions =
       , description = "Start of a clicker game. To learn React. React + Redux + Typescript"
       }
     , { title = "This site"
-      , description = "Elmerific. Continuously integrated"
+      , description = "Written in Elm. Previously continuously build and deployed, currently only tested via CI."
       , link = Nothing
+      }
+    , { title = "Poketypes"
+      , description = "App for visualising Pokemon type weaknesses and advantage for competetive team building. Other equivalent apps exist, but this utilizes a public API to stay up to date with the latest games. Unfortunately, the only public api I was able to find is extremely out of date."
+      , link = Just "https://dyercode.github.io/poketypes/"
       }
     ]
 

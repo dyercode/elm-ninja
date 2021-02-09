@@ -2,3 +2,12 @@ node_modules
 *.iml
 .idea
 elm-stuff
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+.cache
+*.log
+dist
