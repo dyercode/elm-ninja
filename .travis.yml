@@ -1,6 +1,6 @@
 language: node_js
-elm-format: 0.8.4
-elm-test: 0.19.1
+#elm-format: 0.8.4
+#elm-test: 0.19.1
 node_js: '14'
 before_script:
   - yarn global add elm-test@0.19.1-revision6
