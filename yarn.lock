@@ -2281,7 +2281,7 @@ elm-hot@^1.1.6:
   resolved "https://registry.yarnpkg.com/elm-hot/-/elm-hot-1.1.6.tgz#93e3962b40670e65f0a3640951b3add2702bfd0e"
   integrity sha512-zYZJlfs7Gt4BdjA+D+857K+XAWzwwySJmXCgFpHW1dIEfaHSZCIPYPf7/jinZBLfKRkOAlKzI32AA84DY50g7Q==
 
-elm-test@^0.19.1-revision4:
+elm-test@^0.19.1-revision6:
   version "0.19.1-revision6"
   resolved "https://registry.yarnpkg.com/elm-test/-/elm-test-0.19.1-revision6.tgz#a00b5427df98892b4394aef4aa4497237c71a16f"
   integrity sha512-4VbIyCRlCUm/py0E0AjMT3/mwd6DR4Y5Z5gEox6z5JII6ZdKIJmcQzjgWRI5qo5ERJiw9M/Nxhk7SGXFUbZsxQ==
