@@ -11,3 +11,4 @@ elm-stuff
 .cache
 *.log
 dist
+.parcel-cache
