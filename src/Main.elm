@@ -1,29 +1,35 @@
 module Main exposing (jumbotron, main)
 
 import Bootstrap.Grid exposing (col, container, row)
-import Bootstrap.Grid.Col as Col
-import Bootstrap.Grid.Row
 import Browser
-import Html exposing (Attribute, Html, a, dd, dt, h1, h3, header, li, p, text, ul)
+import Browser.Navigation as Nav
+import Html exposing (Html, h1, header, p, text)
 import Html.Attributes exposing (attribute, class, href)
+import Lightning exposing (writeup)
+import Projects exposing (projectsSection)
 import Random
 import Random.List exposing (choose)
+import Url
 
 
 main : Program () Model Msg
 main =
-    Browser.element
+    Browser.application
         { init = init
         , view = view
         , update = update
         , subscriptions = \_ -> Sub.none
+        , onUrlChange = UrlChanged
+        , onUrlRequest = LinkClicked
         }
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
+init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
+init _ url key =
     ( { title = "Jon Dyer"
       , subTitle = ""
+      , key = key
+      , url = url
       }
     , randomString subtitles
     )
@@ -39,6 +45,8 @@ subtitles =
 
 type Msg
     = Subtitle String
+    | LinkClicked Browser.UrlRequest
+    | UrlChanged Url.Url
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -48,6 +56,17 @@ update msg model =
             ( { model | subTitle = string }
             , Cmd.none
             )
+
+        LinkClicked urlRequest ->
+            case urlRequest of
+                Browser.Internal url ->
+                    ( model, Nav.pushUrl model.key (Url.toString url) )
+
+                Browser.External href ->
+                    ( model, Nav.load href )
+
+        UrlChanged url ->
+            ( { model | url = url }, Cmd.none )
 
 
 randomString : List String -> Cmd Msg
@@ -65,81 +84,62 @@ myGeneration tup =
             Subtitle ""
 
 
-lgli : List (Attribute msg) -> List (Html msg) -> Html msg
-lgli attr value =
-    li (class "list-group-item" :: attr) value
-
-
-projectsDefinitions : List Project
-projectsDefinitions =
-    [ { title = "Armor Comparator"
-      , link = Just "armout/"
-      , description =
-            """
-            An application to compare costs and bonuses of various armor configurations for flying in Pathfinder.
-            Originally written in raw html/css/javascript + knockout.  Rewritten in Elm.
-            """
-      }
-    , { title = "pong?", description = "", link = Nothing }
-    , { title = "Potato Clicker"
-      , link = Just "potato/"
-      , description = "Start of a clicker game. To learn React. React + Redux + Typescript"
-      }
-    , { title = "This site"
-      , description = "Written in Elm. Previously continuously build and deployed, currently only tested via CI."
-      , link = Nothing
-      }
-    , { title = "Poketypes"
-      , description = "App for visualising Pokemon type weaknesses and advantage for competetive team building. Other equivalent apps exist, but this utilizes a public API to stay up to date with the latest games. Unfortunately, the only public api I was able to find is extremely out of date."
-      , link = Just "https://dyercode.github.io/poketypes/"
-      }
-    ]
-
-
-projectsSection : Html msg
-projectsSection =
-    row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
-        [ col [ Col.topMd ]
-            [ h3 [ class "text-center" ] [ text "Projects" ]
-            , ul [ class "list-group list-group-flush" ]
-                (List.map project projectsDefinitions)
-            ]
-        ]
-
-
-project : Project -> Html msg
-project projectData =
-    lgli []
-        [ dt []
-            (case projectData.link of
-                Just url ->
-                    [ a [ href url ] [ text projectData.title ] ]
-
-                Nothing ->
-                    [ text projectData.title ]
-            )
-        , dd [] [ text projectData.description ]
-        ]
-
-
-view : Model -> Html msg
+view : Model -> Browser.Document msg
 view model =
+    let
+        page =
+            case urlToPage model.url of
+                Main ->
+                    projectsPage
+
+                Lightning ->
+                    lightningPage
+    in
+    { title = model.title
+    , body =
+        [ page model
+        ]
+    }
+
+
+type Page
+    = Main
+    | Lightning
+
+
+urlToPage : Url.Url -> Page
+urlToPage url =
+    case url.path of
+        "/lightning/" ->
+            Lightning
+
+        _ ->
+            Main
+
+
+sectionWithHeader : Model -> Html msg -> Html msg
+sectionWithHeader model section =
     container [ attribute "id" "container" ]
         [ jumbotron model
-        , projectsSection
+        , section
         ]
+
+
+projectsPage : Model -> Html msg
+projectsPage model =
+    sectionWithHeader model projectsSection
+
+
+lightningPage : Model -> Html msg
+lightningPage model =
+    sectionWithHeader model writeup
 
 
 type alias Model =
     { title : String
     , subTitle : String
-    }
-
-
-type alias Project =
-    { title : String
-    , link : Maybe String
-    , description : String
+    , key : Nav.Key
+    , url : Url.Url
     }
 
 
