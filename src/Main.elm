@@ -2,13 +2,15 @@ module Main exposing (jumbotron, main)
 
 import Bootstrap.Grid exposing (col, container, row)
 import Browser
+import Browser.Dom as Dom
 import Browser.Navigation as Nav
 import Html exposing (Html, h1, header, p, text)
-import Html.Attributes exposing (attribute, class, href)
+import Html.Attributes exposing (attribute, class)
 import Lightning exposing (writeup)
 import Projects exposing (projectsSection)
 import Random
 import Random.List exposing (choose)
+import Task
 import Url
 
 
@@ -40,6 +42,7 @@ subtitles =
     [ "(A reasonable subtitle) => text"
     , "(idea) => code"
     , "ninja : idea -> code -> product"
+    , "@wip"
     ]
 
 
@@ -47,6 +50,7 @@ type Msg
     = Subtitle String
     | LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
+    | NoOp
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -60,13 +64,21 @@ update msg model =
         LinkClicked urlRequest ->
             case urlRequest of
                 Browser.Internal url ->
-                    ( model, Nav.pushUrl model.key (Url.toString url) )
+                    ( model
+                    , Cmd.batch
+                        [ Nav.pushUrl model.key (Url.toString url)
+                        , Task.perform (\_ -> NoOp) (Dom.setViewport 0 0)
+                        ]
+                    )
 
                 Browser.External href ->
                     ( model, Nav.load href )
 
         UrlChanged url ->
             ( { model | url = url }, Cmd.none )
+
+        NoOp ->
+            ( model, Cmd.none )
 
 
 randomString : List String -> Cmd Msg
@@ -119,7 +131,7 @@ urlToPage url =
 
 sectionWithHeader : Model -> Html msg -> Html msg
 sectionWithHeader model section =
-    container [ attribute "id" "container" ]
+    container [ attribute "id" "container", class "col-lg-8" ]
         [ jumbotron model
         , section
         ]
@@ -143,13 +155,23 @@ type alias Model =
     }
 
 
-jumbotron : Model -> Html msg
-jumbotron model =
+jumbotron : { a | title : String, subTitle : String } -> Html msg
+jumbotron titles =
     row []
         [ col []
-            [ header [ class "jumbotron" ]
-                [ h1 [ class "display-4" ] [ text model.title ]
-                , p [ class "lead" ] [ text model.subTitle ]
+            [ header
+                [ class "p-5"
+                , class "mb-4"
+                , class "mt-4"
+                , class "border"
+                , class "border-1"
+                , class "border-dark"
+                , class "rounded-3"
+                , class "jumbotron"
+                , class "shadow-sm"
+                ]
+                [ h1 [ class "display-4" ] [ text titles.title ]
+                , p [ class "lead" ] [ text titles.subTitle ]
                 ]
             ]
         ]
