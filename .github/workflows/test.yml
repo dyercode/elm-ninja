@@ -29,7 +29,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: "15.x"
+          node-version: "16.x"
       - run: yarn build
       - run: tar -zcvf elm-ninja.tar.gz dist
       - name: Release
