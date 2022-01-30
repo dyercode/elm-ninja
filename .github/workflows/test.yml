@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -30,6 +30,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "16.x"
+      - run: yarn install
       - run: yarn build
       - run: tar -zcvf elm-ninja.tar.gz dist
       - name: Release
