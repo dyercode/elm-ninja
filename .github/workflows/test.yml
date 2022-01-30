@@ -40,3 +40,6 @@ jobs:
           files: elm-ninja.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: NoRelease
+        if: false == startsWith(github.ref , 'refs/tags/')
+        run: "echo didn't run ref was $GITHUB_REF"
