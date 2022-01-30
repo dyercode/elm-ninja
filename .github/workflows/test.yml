@@ -35,11 +35,7 @@ jobs:
       - run: tar -zcvf elm-ninja.tar.gz dist
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: elm-ninja.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: NoRelease
-        if: false == startsWith(github.ref , 'refs/tags/')
-        run: echo "did not run ref was $GITHUB_REF"
