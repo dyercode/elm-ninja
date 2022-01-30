@@ -7,7 +7,7 @@ import Browser.Navigation as Nav
 import Html exposing (Html, h1, header, p, text)
 import Html.Attributes exposing (attribute, class)
 import Lightning exposing (writeup)
-import Projects exposing (projectsSection)
+import Projects exposing (isRoute, projectsSection)
 import Random
 import Random.List exposing (choose)
 import Task
@@ -64,12 +64,16 @@ update msg model =
         LinkClicked urlRequest ->
             case urlRequest of
                 Browser.Internal url ->
-                    ( model
-                    , Cmd.batch
-                        [ Nav.pushUrl model.key (Url.toString url)
-                        , Task.perform (\_ -> NoOp) (Dom.setViewport 0 0)
-                        ]
-                    )
+                    if isRoute url then
+                        ( model
+                        , Cmd.batch
+                            [ Nav.pushUrl model.key (Url.toString url)
+                            , Task.perform (\_ -> NoOp) (Dom.setViewport 0 0)
+                            ]
+                        )
+
+                    else
+                        ( model, Nav.load (Url.toString url) )
 
                 Browser.External href ->
                     ( model, Nav.load href )

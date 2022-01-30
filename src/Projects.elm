@@ -1,10 +1,57 @@
-module Projects exposing (projectsSection)
+module Projects exposing (isRoute, projectsSection)
 
 import Bootstrap.Grid exposing (col, row)
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
 import Html exposing (Html, a, dd, dl, dt, h3, text, ul)
 import Html.Attributes exposing (class, href)
+import Url exposing (Url)
+
+
+type Route
+    = Home
+    | Blog Blogs
+    | External String
+
+
+type Blogs
+    = Lightning
+
+
+toRoute : String -> Route
+toRoute path =
+    case path of
+        "/" ->
+            Home
+
+        "/lightning/" ->
+            Blog Lightning
+
+        s ->
+            External s
+
+
+isRoute : Url -> Bool
+isRoute url =
+    case toRoute url.path of
+        External _ ->
+            False
+
+        _ ->
+            True
+
+
+toFragment : Route -> String
+toFragment route =
+    case route of
+        Home ->
+            "/"
+
+        Blog Lightning ->
+            "/lightning/"
+
+        External url ->
+            url
 
 
 type alias Project =
@@ -57,7 +104,7 @@ latest games. Unfortunately, the only public api I was able to find is extremely
       }
     , { title = "Lightning Dodger"
       , description = "Auto-dodger for Final Fantasy X"
-      , links = [ blogLink "/lightning/" ]
+      , links = [ blogLink Lightning ]
       }
     , { title = "Game of Life"
       , description = """
@@ -72,9 +119,9 @@ latest games. Unfortunately, the only public api I was able to find is extremely
     ]
 
 
-blogLink : String -> Link
-blogLink url =
-    { label = "Blog", url = url }
+blogLink : Blogs -> Link
+blogLink blog =
+    { label = "Blog", url = toFragment (Blog blog) }
 
 
 sourceLink : String -> Link
@@ -92,8 +139,8 @@ projectsSection =
     row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
         [ col [ Col.topMd ]
             [ h3 [ class "text-center" ] [ text "Projects" ]
-            , ul [ class "list-group list-group-flush" ]
-                (List.map project projectsDefinitions)
+            , ul [ class "list-group list-group-flush" ] <|
+                List.map project projectsDefinitions
             ]
         ]
 
