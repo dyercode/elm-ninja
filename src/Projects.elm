@@ -1,57 +1,11 @@
-module Projects exposing (isRoute, projectsSection)
+module Projects exposing (projectsSection)
 
 import Bootstrap.Grid exposing (col, row)
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
 import Html exposing (Html, a, dd, dl, dt, h3, text, ul)
 import Html.Attributes exposing (class, href)
-import Url exposing (Url)
-
-
-type Route
-    = Home
-    | Blog Blogs
-    | External String
-
-
-type Blogs
-    = Lightning
-
-
-toRoute : String -> Route
-toRoute path =
-    case path of
-        "/" ->
-            Home
-
-        "/lightning/" ->
-            Blog Lightning
-
-        s ->
-            External s
-
-
-isRoute : Url -> Bool
-isRoute url =
-    case toRoute url.path of
-        External _ ->
-            False
-
-        _ ->
-            True
-
-
-toFragment : Route -> String
-toFragment route =
-    case route of
-        Home ->
-            "/"
-
-        Blog Lightning ->
-            "/lightning/"
-
-        External url ->
-            url
+import Route exposing (Blogs(..), Route(..), toFragment)
 
 
 type alias Project =

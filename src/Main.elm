@@ -7,9 +7,10 @@ import Browser.Navigation as Nav
 import Html exposing (Html, h1, header, p, text)
 import Html.Attributes exposing (attribute, class)
 import Lightning exposing (writeup)
-import Projects exposing (isRoute, projectsSection)
+import Projects exposing (projectsSection)
 import Random
 import Random.List exposing (choose)
+import Route exposing (isRoute)
 import Task
 import Url
 
