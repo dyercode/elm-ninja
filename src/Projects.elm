@@ -32,7 +32,25 @@ project projectData =
 
 projectsDefinitions : List Project
 projectsDefinitions =
-    [ { title = "Armor Comparator"
+    [ { title = "Game of Life"
+      , description = """
+      Game of life implementation based on an approach I found interesting at a Global Day of
+      Coderetreat where the board state is stored by nesting closures.
+      """
+      , links =
+            [ appLink "https://dyercode.github.io/gol/"
+            , sourceLink "https://github.com/dyercode/gol/"
+            ]
+      }
+    , { title = "IOLights"
+      , description = """
+    Pi4j and Cats Effect app to toggle a lamp. Created to keep pet on a regular schedule. Has
+    rudimentary scheduler and rest api. Also controlled by offline voice activation by a
+    separate, private, project using a Google AIY Voice Kit.
+    """
+      , links = []
+      }
+    , { title = "Armor Comparator"
       , links = [ appLink "/armout/", sourceLink "https://github.com/dyercode/armor-comparator" ]
       , description =
             """
@@ -58,16 +76,6 @@ latest games. Unfortunately, the only public api I was able to find is extremely
     , { title = "Lightning Dodger"
       , description = "Auto-dodger for Final Fantasy X"
       , links = [ blogLink Lightning ]
-      }
-    , { title = "Game of Life"
-      , description = """
-      Game of life implementation based on an approach I found interesting at a Global Day of
-      Coderetreat where the board state is stored by nesting closures. 
-      """
-      , links =
-            [ appLink "https://dyercode.github.io/gol/"
-            , sourceLink "https://github.com/dyercode/gol/"
-            ]
       }
     ]
 

@@ -41,22 +41,22 @@ writeup =
                    """ ]
                    , p []
                        [ text """
-           So what I've done is taken a photoresistor, a microcontroller (Pi Pico), and an old 3rd party
-           controller that's too mushy to be useful for actual gaming and made an auto-presser for it.
+           I've taken a photoresistor, a microcontroller (Pi Pico), and an old 3rd party
+           controller that's too mushy to be useful for actual gaming and made an auto-presser for to do it for me.
            The controller is connected to the Switch via a snes-wii adapter and a wii/gamecube-switch
-           bluetooth adapter. This isn't ideal, but is what I had to work with on hand, more at the end.
+           bluetooth adapter. This isn't ideal, but is what I had to work with on hand.
                    """ ]
                    , h3 [] [ text "Hardware" ]
                    , p [] [ text """
-           The hardware setup is simple, and should be easy enough to
-           replicate on any micro with an ADC.
+           The hardware setup is simple, and should be easy enough to replicate on any micro with an ADC.
                    """ ]
                    , h3 [] [ text "Logic Section" ]
+                   , h2 [] [text " Step 1 - Detect the Flash"]
                    , p [] [ text """
-           Step 1 was to detect the flash. So I wired up just the photoresistor to one of the micro's ADC's
-           and wrote a loop to print out the value above a certain threshold. On my first attempt the
-           telegraphing flash maxed out the sensor. This was super convenient, but unfortunately a side
-           effect of mis-wiring the photoresistor to 5V instead of the Pi Pico's rated 3.3V.
+           I wired up just the photoresistor to one of the micro's ADC's and wrote a loop to print out the value
+           above a certain threshold. On my first attempt the telegraphing flash maxed out the sensor. This was
+           super convenient, but unfortunately a side effect of mis-wiring the photoresistor to 5V instead of the
+           Pi Pico's rated 3.3V.
            """ ]
                    , p [] [ text """
            To avoid needing to sift through too much data I picked some arbitrary values above which to print at,
