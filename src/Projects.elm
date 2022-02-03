@@ -40,14 +40,12 @@ projectsDefinitions =
             Originally written in raw html/css/javascript + knockout.  Rewritten in Elm.
             """
       }
-
-    -- , { title = "pong?", description = "", links = [] }
     , { title = "Potato Clicker"
       , links = [ appLink "/potato/" ]
       , description = "Start of a clicker game. To learn React. React + Redux + Typescript"
       }
     , { title = "This site"
-      , description = "Written in Elm. Previously continuously build and deployed, currently only tested via CI."
+      , description = "Written in Elm. Previously continuously tested and built."
       , links = []
       }
     , { title = "Poketypes"
