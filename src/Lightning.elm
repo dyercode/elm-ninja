@@ -1,6 +1,6 @@
 module Lightning exposing (writeup)
 
-import Html exposing (Html, a, div, h3, iframe, li, nav, ol, p, text)
+import Html exposing (Html, a, div, h3, h4, iframe, li, nav, ol, p, text)
 import Html.Attributes exposing (attribute, class, height, href, src, title, width)
 
 
@@ -29,36 +29,34 @@ writeup =
         A micocontroller project to dodge lightning in Final Fantasy X. Writeup, code and schematics coming sometime.
         """
             ]
-
-        {-
-                   , h3 [] [ text "Background" ]
-                   , p [] [ text """
+        , h3 [] [ text "Background" ]
+        , p [] [ text """
            In Final Fantasy X there is a "minigame" you have to complete to get a piece of Lulu's Celestial/Ultimate
            weapon. It requires the player to dodge 200 lightning strikes in a row.  The lightning generally
            strikes at random intervals, though there are ways to manipulate the timing.
            To dodge a lightning bolt you must press a button, 'A' in my case, quickly after the screen
            flashes. If you mash the button early you automatically get hit.
                    """ ]
-                   , p []
-                       [ text """
+        , p []
+            [ text """
            I've taken a photoresistor, a microcontroller (Pi Pico), and an old 3rd party
            controller that's too mushy to be useful for actual gaming and made an auto-presser for to do it for me.
            The controller is connected to the Switch via a snes-wii adapter and a wii/gamecube-switch
            bluetooth adapter. This isn't ideal, but is what I had to work with on hand.
                    """ ]
-                   , h3 [] [ text "Hardware" ]
-                   , p [] [ text """
+        , h3 [] [ text "Hardware" ]
+        , p [] [ text """
            The hardware setup is simple, and should be easy enough to replicate on any micro with an ADC.
                    """ ]
-                   , h3 [] [ text "Logic Section" ]
-                   , h2 [] [text " Step 1 - Detect the Flash"]
-                   , p [] [ text """
+        , h3 [] [ text "Logic Section" ]
+        , h4 [] [ text " Step 1 - Detect the Flash" ]
+        , p [] [ text """
            I wired up just the photoresistor to one of the micro's ADC's and wrote a loop to print out the value
            above a certain threshold. On my first attempt the telegraphing flash maxed out the sensor. This was
            super convenient, but unfortunately a side effect of mis-wiring the photoresistor to 5V instead of the
            Pi Pico's rated 3.3V.
            """ ]
-                   , p [] [ text """
+        , p [] [ text """
            To avoid needing to sift through too much data I picked some arbitrary values above which to print at,
            somewhere above 0x9F. This worked pretty well in the poorly lit room. I did run into a few gotchas.
            The value printed was high for long after the flash had ended. I'm pretty sure this was partly from
@@ -67,7 +65,7 @@ writeup =
            detecting lightning is simply checking that the light has stayed high for long enough, I went with 6
            frames. The Pi Pico runs pretty fast so I throttle the main loop to around 60fps
                    """ ]
-        -}
+
         -- , h3 [] [ text "Source Code" ]
         -- , a [ href "https://github.com/dyercode/" ] [ text "Github Repo with C code and Schematic coming soon" ]
         , h3 [] [ text "In Action" ]
