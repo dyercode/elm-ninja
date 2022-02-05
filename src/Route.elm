@@ -1,6 +1,7 @@
 module Route exposing (Blogs(..), Route(..), isRoute, toFragment)
 
 import Url exposing (Url)
+import Url.Parser as Parser exposing (Parser)
 
 
 type Route
@@ -13,22 +14,27 @@ type Blogs
     = Lightning
 
 
-toRoute : String -> Route
-toRoute path =
-    case path of
-        "/" ->
-            Home
+routeParser : Parser (Route -> c) c
+routeParser =
+    Parser.oneOf
+        [ Parser.map Home Parser.top
+        , Parser.map (Blog Lightning) (Parser.s "lightning")
+        ]
 
-        "/lightning/" ->
-            Blog Lightning
 
-        s ->
-            External s
+toRoute : Url -> Route
+toRoute url =
+    case Parser.parse routeParser url of
+        Just r ->
+            r
+
+        Nothing ->
+            External url.path
 
 
 isRoute : Url -> Bool
 isRoute url =
-    case toRoute url.path of
+    case toRoute url of
         External _ ->
             False
 
