@@ -77,17 +77,27 @@ update msg model =
                     if isRoute url model.basePath then
                         ( model
                         , Cmd.batch
-                            [ Nav.pushUrl model.key (Url.toString url)
+                            [ consoleLog ("internal url: \"" ++ Url.toString url ++ "\"")
+                            , Nav.pushUrl model.key (Url.toString url)
                             , Task.perform (\_ -> NoOp) (Dom.setViewport 0 0)
-                            , consoleLog ("internal url: \"" ++ Url.toString url ++ "\"")
                             ]
                         )
 
                     else
-                        ( model, Nav.load (Url.toString url) )
+                        ( model
+                        , Cmd.batch
+                            [ consoleLog ("external url: \"" ++ Url.toString url ++ "\"")
+                            , Nav.load (Url.toString url)
+                            ]
+                        )
 
                 Browser.External href ->
-                    ( model, Nav.load href )
+                    ( model
+                    , Cmd.batch
+                        [ consoleLog ("naturally external url: \"" ++ href ++ "\"")
+                        , Nav.load href
+                        ]
+                    )
 
         UrlChanged url ->
             ( { model | url = url }, Cmd.none )

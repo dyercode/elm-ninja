@@ -2,10 +2,9 @@ import { Elm } from "./Main.elm";
 
 const basePath = new URL(document.baseURI).pathname;
 
-Elm.Main.init({
+let app = Elm.Main.init({
   node: document.querySelector("main"),
   flags: { basePath: basePath === "/" ? "" : basePath },
-  ports: {
-    consoleLog: { subscribe: console.log },
-  },
 });
+
+app.ports.consoleLog.subscribe(console.log);
