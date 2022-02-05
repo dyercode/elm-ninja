@@ -1,4 +1,4 @@
-module Main exposing (jumbotron, main)
+port module Main exposing (jumbotron, main)
 
 import Bootstrap.Grid exposing (col, container, row)
 import Browser
@@ -15,7 +15,11 @@ import Task
 import Url
 
 
-main : Program () Model Msg
+type alias Flags =
+    { basePath : String }
+
+
+main : Program Flags Model Msg
 main =
     Browser.application
         { init = init
@@ -27,12 +31,13 @@ main =
         }
 
 
-init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
-init _ url key =
+init : Flags -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
+init { basePath } url key =
     ( { title = "Jon Dyer"
       , subTitle = ""
       , key = key
       , url = url
+      , basePath = basePath
       }
     , randomString subtitles
     )
@@ -44,6 +49,7 @@ subtitles =
     , "(idea) => code"
     , "ninja : idea -> code -> product"
     , "@wip"
+    , "this is random, reroll coming soon to this option"
     ]
 
 
@@ -52,6 +58,9 @@ type Msg
     | LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
     | NoOp
+
+
+port consoleLog : String -> Cmd msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -65,11 +74,12 @@ update msg model =
         LinkClicked urlRequest ->
             case urlRequest of
                 Browser.Internal url ->
-                    if isRoute url then
+                    if isRoute url model.basePath then
                         ( model
                         , Cmd.batch
                             [ Nav.pushUrl model.key (Url.toString url)
                             , Task.perform (\_ -> NoOp) (Dom.setViewport 0 0)
+                            , consoleLog ("internal url: \"" ++ Url.toString url ++ "\"")
                             ]
                         )
 
@@ -144,7 +154,7 @@ sectionWithHeader model section =
 
 projectsPage : Model -> Html msg
 projectsPage model =
-    sectionWithHeader model projectsSection
+    sectionWithHeader model (projectsSection model.basePath)
 
 
 lightningPage : Model -> Html msg
@@ -157,6 +167,7 @@ type alias Model =
     , subTitle : String
     , key : Nav.Key
     , url : Url.Url
+    , basePath : String
     }
 
 

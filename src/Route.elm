@@ -22,9 +22,13 @@ routeParser =
         ]
 
 
-toRoute : Url -> Route
-toRoute url =
-    case Parser.parse routeParser url of
+toRoute : Url -> String -> Route
+toRoute url basePath =
+    let
+        trimmedUrl =
+            { url | path = String.replace basePath "" url.path }
+    in
+    case Parser.parse routeParser trimmedUrl of
         Just r ->
             r
 
@@ -32,9 +36,9 @@ toRoute url =
             External url.path
 
 
-isRoute : Url -> Bool
-isRoute url =
-    case toRoute url of
+isRoute : Url -> String -> Bool
+isRoute url base =
+    case toRoute url base of
         External _ ->
             False
 
@@ -42,14 +46,14 @@ isRoute url =
             True
 
 
-toFragment : Route -> String
-toFragment route =
+toFragment : Route -> String -> String
+toFragment route basePath =
     case route of
         Home ->
-            "/"
+            basePath ++ "/"
 
         Blog Lightning ->
-            "/lightning/"
+            basePath ++ "/lightning/"
 
         External url ->
             url

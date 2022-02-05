@@ -30,8 +30,8 @@ project projectData =
         ]
 
 
-projectsDefinitions : List Project
-projectsDefinitions =
+projectsDefinitions : String -> List Project
+projectsDefinitions basePath =
     [ { title = "Game of Life"
       , description = """
       Game of life implementation based on an approach I found interesting at a Global Day of
@@ -75,14 +75,14 @@ latest games. Unfortunately, the only public api I was able to find is extremely
       }
     , { title = "Lightning Dodger"
       , description = "Auto-dodger for Final Fantasy X"
-      , links = [ blogLink Lightning ]
+      , links = [ blogLink Lightning basePath ]
       }
     ]
 
 
-blogLink : Blogs -> Link
-blogLink blog =
-    { label = "Blog", url = toFragment (Blog blog) }
+blogLink : Blogs -> String -> Link
+blogLink blog basePath =
+    { label = "Blog", url = toFragment (Blog blog) basePath }
 
 
 sourceLink : String -> Link
@@ -95,13 +95,13 @@ appLink url =
     { label = "App", url = url }
 
 
-projectsSection : Html msg
-projectsSection =
+projectsSection : String -> Html msg
+projectsSection basePath =
     row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
         [ col [ Col.topMd ]
             [ h3 [ class "text-center" ] [ text "Projects" ]
             , ul [ class "list-group list-group-flush" ] <|
-                List.map project projectsDefinitions
+                List.map project (projectsDefinitions basePath)
             ]
         ]
 
