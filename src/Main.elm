@@ -50,6 +50,7 @@ subtitles =
     , "ninja : idea -> code -> product"
     , "@wip"
     , "this is random, reroll coming soon to this option"
+    , "Not a designer, not sorry"
     ]
 
 
@@ -77,26 +78,29 @@ update msg model =
                     if isRoute url model.basePath then
                         ( model
                         , Cmd.batch
-                            [ consoleLog ("internal url: \"" ++ Url.toString url ++ "\"")
-                            , Nav.pushUrl model.key (Url.toString url)
+                            -- , consoleLog ("internal url: \"" ++ Url.toString url ++ "\"")
+                            -- , consoleLog model.basePath
+                            [ Nav.pushUrl model.key (Url.toString url)
                             , Task.perform (\_ -> NoOp) (Dom.setViewport 0 0)
                             ]
                         )
 
                     else
                         ( model
-                        , Cmd.batch
-                            [ consoleLog ("external url: \"" ++ Url.toString url ++ "\"")
-                            , Nav.load (Url.toString url)
-                            ]
+                        , -- Cmd.batch
+                          -- [ consoleLog ("external url: \"" ++ Url.toString url ++ "\"")
+                          -- , consoleLog model.basePath
+                          Nav.load (Url.toString url)
+                          -- ]
                         )
 
                 Browser.External href ->
                     ( model
-                    , Cmd.batch
+                    , {--Cmd.batch
                         [ consoleLog ("naturally external url: \"" ++ href ++ "\"")
-                        , Nav.load href
-                        ]
+                        , consoleLog model.basePath
+                        --}
+                      Nav.load href
                     )
 
         UrlChanged url ->

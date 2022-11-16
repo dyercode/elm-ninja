@@ -35,7 +35,8 @@ projectsDefinitions basePath =
     [ { title = "Game of Life"
       , description = """
       Game of life implementation based on an approach I found interesting at a Global Day of
-      Coderetreat where the board state is stored by nesting closures.
+      Coderetreat where the board state is stored by nesting closures. This approach isn't stack-safe
+      but was fun to implement for this problem.
       """
       , links =
             [ appLink "https://dyercode.github.io/gol/"
