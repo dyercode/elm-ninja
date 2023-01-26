@@ -55,7 +55,7 @@ projectsDefinitions =
       , description =
             """
             An application to compare costs and bonuses of various armor configurations for flying in Pathfinder.
-            Originally written in raw html/css/javascript + knockout.  Rewritten in Elm.
+            Originally written in raw HTML/CSS/Javascript + Knockout.  Rewritten in Elm.
             """
       }
     , { title = "Potato Clicker"
@@ -70,7 +70,7 @@ projectsDefinitions =
       , description = """
 App for visualizing Pokemon type weaknesses and advantage for competitive team building.
 Other equivalent apps exist, but this utilizes a public API to stay up to date with the
-latest games. Unfortunately, the only public api I was able to find is extremely out of date."""
+latest games. Doesn't account natively for terastalizing."""
       , links = [ appLink "https://dyercode.github.io/poketypes/" ]
       }
     , { title = "Lightning Dodger"

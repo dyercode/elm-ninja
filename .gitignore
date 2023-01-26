@@ -12,3 +12,4 @@ elm-stuff
 *.log
 dist
 .parcel-cache
+.direnv
