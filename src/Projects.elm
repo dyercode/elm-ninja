@@ -51,7 +51,7 @@ projectsDefinitions =
       , links = []
       }
     , { title = "Armor Comparator"
-      , links = [ appLink "/armor/", sourceLink "https://github.com/dyercode/armor-comparator" ]
+      , links = [ appLink "/armout/", sourceLink "https://github.com/dyercode/armor-comparator" ]
       , description =
             """
             An application to compare costs and bonuses of various armor configurations for flying in Pathfinder.
