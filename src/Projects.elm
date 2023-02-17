@@ -64,7 +64,7 @@ projectsDefinitions =
       }
     , { title = "This site"
       , description = "Written in Elm. Previously continuously tested and built."
-      , links = []
+      , links = [ sourceLink "https://github.com/dyercode/elm-ninja/" ]
       }
     , { title = "Poketypes"
       , description = """
