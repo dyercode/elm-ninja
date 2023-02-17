@@ -1,4 +1,4 @@
-module Main exposing (jumbotron, main)
+module Main exposing (Model, Msg, jumbotron, main)
 
 import Bootstrap.Grid exposing (col, container, row)
 import Browser
