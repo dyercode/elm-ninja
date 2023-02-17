@@ -16,6 +16,7 @@
             elmPackages.elm-json
             podman
             buildah
+            fish
           ];
 
           shellHook = ''
