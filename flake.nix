@@ -14,8 +14,6 @@
           nativeBuildInputs = with pkgs; [
             nodePackages.yarn
             elmPackages.elm-json
-            elmPackages.elm-format
-            elmPackages.elm-test
             podman
             buildah
           ];
