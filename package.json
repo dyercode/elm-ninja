@@ -18,11 +18,11 @@
     "elm-analyse": "^0.16.5",
     "elm-format": "^0.8.5",
     "elm-hot": "^1.1.6",
-    "elm-test": "^0.19.1-revision11",
+    "elm-test": "^0.19.1-revision12",
     "elm-upgrade": "^0.19.8",
     "node-elm-compiler": "^5.0.6",
     "parcel": "^2.8.3",
-    "sass": "^1.57.1"
+    "sass": "^1.58.3"
   },
   "dependencies": {}
 }
