@@ -32,10 +32,18 @@ project projectData =
 
 projectsDefinitions : List Project
 projectsDefinitions =
-    [ { title = "Game of Life"
+    [ { title = "Kubernetes Cluster"
+      , description = """
+        This site the other apps hosted on this domain are running in Kubernetes (k3s).
+        """
+      , links = []
+      }
+    , { title = "Game of Life"
       , description = """
       Game of life implementation based on an approach I found interesting at a Global Day of
       Coderetreat where the board state is stored by nesting closures.
+
+      Demo site runs a fixed starting pattern. As in the user cannot change the state of the board.
       """
       , links =
             [ appLink "https://dyercode.github.io/gol/"
@@ -54,7 +62,7 @@ projectsDefinitions =
       , links = [ appLink "/armor/", sourceLink "https://github.com/dyercode/armor-comparator" ]
       , description =
             """
-            An application to compare costs and bonuses of various armor configurations for flying in Pathfinder.
+            An application to compare costs and bonuses of various armor configurations for flying in some Tabletop RPG.
             Originally written in raw HTML/CSS/Javascript + Knockout.  Rewritten in Elm.
             """
       }
@@ -63,7 +71,7 @@ projectsDefinitions =
       , description = "Start of a clicker game. To learn React. React + Redux + Typescript"
       }
     , { title = "This site"
-      , description = "Written in Elm. Previously continuously tested and built."
+      , description = "Written in Elm. Running in Kubernetes."
       , links = [ sourceLink "https://github.com/dyercode/elm-ninja/" ]
       }
     , { title = "Poketypes"
