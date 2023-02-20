@@ -3,7 +3,7 @@ module Projects exposing (projectsSection)
 import Bootstrap.Grid exposing (col, row)
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
-import Html exposing (Html, a, dd, dl, dt, h3, text, ul)
+import Html exposing (Html, a, dd, dl, dt, h3, p, text, ul)
 import Html.Attributes exposing (class, href)
 import Route exposing (Blogs(..), Route(..), toFragment)
 
@@ -11,7 +11,7 @@ import Route exposing (Blogs(..), Route(..), toFragment)
 type alias Project =
     { title : String
     , links : List Link
-    , description : String
+    , description : List String
     }
 
 
@@ -25,7 +25,7 @@ project : Project -> Html msg
 project projectData =
     dl [ class "list-group-item" ]
         [ dt [] [ text projectData.title ]
-        , dd [] [ text projectData.description ]
+        , dd [] (List.map (\paragraph -> p [] [ text paragraph ]) projectData.description)
         , displayLinks projectData.links
         ]
 
@@ -33,56 +33,56 @@ project projectData =
 projectsDefinitions : List Project
 projectsDefinitions =
     [ { title = "Kubernetes Cluster"
-      , description = """
+      , description = [ """
         This site the other apps hosted on this domain are running in Kubernetes (k3s).
-        """
+        """ ]
       , links = []
       }
     , { title = "Game of Life"
-      , description = """
+      , description =
+            [ """
       Game of life implementation based on an approach I found interesting at a Global Day of
-      Coderetreat where the board state is stored by nesting closures.
-
-      Demo site runs a fixed starting pattern. As in the user cannot change the state of the board.
-      """
+      Coderetreat where the board state is stored by nesting closures."""
+            , """Demo site runs a fixed starting pattern which continues indefinitely. The user cannot change the state of the board."""
+            ]
       , links =
             [ appLink "https://dyercode.github.io/gol/"
             , sourceLink "https://github.com/dyercode/gol/"
             ]
       }
     , { title = "IOLights"
-      , description = """
+      , description = [ """
     Pi4j and Cats Effect app to toggle a lamp. Created to keep pet on a regular schedule. Has
     rudimentary scheduler and rest api. Also controlled by offline voice activation by a
     separate, private, project using a Google AIY Voice Kit.
-    """
+    """ ]
       , links = []
       }
     , { title = "Armor Comparator"
       , links = [ appLink "/armor/", sourceLink "https://github.com/dyercode/armor-comparator" ]
       , description =
-            """
+            [ """
             An application to compare costs and bonuses of various armor configurations for flying in some Tabletop RPG.
             Originally written in raw HTML/CSS/Javascript + Knockout.  Rewritten in Elm.
-            """
+            """ ]
       }
     , { title = "Potato Clicker"
       , links = [ appLink "/potato/" ]
-      , description = "Start of a clicker game. To learn React. React + Redux + Typescript"
+      , description = [ "Start of a clicker game. To learn React. React + Redux + Typescript" ]
       }
     , { title = "This site"
-      , description = "Written in Elm. Running in Kubernetes."
+      , description = [ "Written in Elm. Running in Kubernetes." ]
       , links = [ sourceLink "https://github.com/dyercode/elm-ninja/" ]
       }
     , { title = "Poketypes"
-      , description = """
+      , description = [ """
 App for visualizing Pokemon type weaknesses and advantage for competitive team building.
 Other equivalent apps exist, but this utilizes a public API to stay up to date with the
-latest games. Doesn't account natively for terastalizing."""
+latest games. Doesn't account natively for terastalizing.""" ]
       , links = [ appLink "https://dyercode.github.io/poketypes/" ]
       }
     , { title = "Lightning Dodger"
-      , description = "Auto-dodger for Final Fantasy X"
+      , description = [ "Auto-dodger for Final Fantasy X" ]
       , links = [ blogLink Lightning ]
       }
     ]
