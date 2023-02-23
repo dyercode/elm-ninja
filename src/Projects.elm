@@ -90,7 +90,7 @@ latest games. Doesn't account natively for terastalizing.""" ]
             [ "Achievement tracker for a certain game. Not yet ready for prime time, but I want to talk about it."
             , """Built for Kubernetes with an Elm frontend and Scala backend. Uses Http4s, Cats, and doobie.
                  Currently has user authentication and integration with third party APIs.
-                 Achievements themselves are planned to be extensible."""
+                 Achievements themselves are planned to be customizable."""
             ]
       , links = []
       }

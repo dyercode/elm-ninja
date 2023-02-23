@@ -1,0 +1,2 @@
+commands:
+  release: rm -rf dist && yarn install && yarn build && ./build.sh
