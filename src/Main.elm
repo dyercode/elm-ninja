@@ -104,6 +104,7 @@ myGeneration tup =
 view : Model -> Browser.Document msg
 view model =
     let
+        page : Model -> Html msg
         page =
             case urlToPage model.url of
                 Main ->

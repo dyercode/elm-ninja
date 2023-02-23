@@ -1,7 +1,7 @@
 module Example exposing (suite)
 
 import Main exposing (jumbotron)
-import Test exposing (..)
+import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector as Selector
 
