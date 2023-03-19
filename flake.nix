@@ -4,10 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    dev.url = "github:dyercode/dev";
     cnt.url = "github:dyercode/cnt";
   };
 
-  outputs = { self, nixpkgs, flake-utils, cnt }:
+  outputs = { self, nixpkgs, flake-utils, dev, cnt }:
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
       in {
@@ -20,6 +21,7 @@
             buildah
             fish
             cnt.defaultPackage.${system}
+            dev.defaultPackage.${system}
           ];
 
           shellHook = ''
