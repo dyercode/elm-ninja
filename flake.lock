@@ -65,11 +65,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1707141756,
-        "narHash": "sha256-Bx4V22JUsmLa2RIeFO+Qd/fx/Kmpj19+cJN4VfPn+v4=",
+        "lastModified": 1708045122,
+        "narHash": "sha256-XU2lbYNA5dzZQvxY3tSPV44Gy06d8uDVMTXT18xKuOw=",
         "owner": "dyercode",
         "repo": "dev",
-        "rev": "e86169ec4697dedf720ae78a09de3c49162cbeda",
+        "rev": "965d56c5d13a5d71a6eeb05bf2e3cd5d0c6a46c8",
         "type": "github"
       },
       "original": {
