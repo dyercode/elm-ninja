@@ -1,2 +1,3 @@
 commands:
   package: rm -rf dist && yarn install && yarn build && cnt build
+  test: elm-test && elm-review src/ tests/

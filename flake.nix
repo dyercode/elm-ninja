@@ -15,13 +15,13 @@
         inherit system;
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
-            nodePackages.yarn
+            yarn-berry
             elmPackages.elm-json
             podman
             buildah
             fish
             cnt.defaultPackage.${system}
-            dev.defaultPackage.${system}
+            dev.packages.${system}.default
           ];
 
           shellHook = ''
