@@ -25,7 +25,7 @@ project : Project -> Html msg
 project projectData =
     dl [ class "list-group-item" ]
         [ dt [] [ text projectData.title ]
-        , dd [] (List.map (\paragraph -> p [] [ text paragraph ]) projectData.description)
+        , dd [] <| List.map (\paragraph -> p [] [ text paragraph ]) projectData.description
         , displayLinks projectData.links
         ]
 
