@@ -1,3 +1,6 @@
 commands:
   package: rm -rf dist && yarn install && yarn build && cnt build
-  check: elm-test && elm-review src/ tests/
+  check: 
+    - elm-format --validate src/
+    - elm-test 
+    - elm-review src/ tests/

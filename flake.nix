@@ -17,6 +17,7 @@
           nativeBuildInputs = with pkgs; [
             yarn-berry
             elmPackages.elm-json
+            elmPackages.elm-coverage
             podman
             buildah
             fish
