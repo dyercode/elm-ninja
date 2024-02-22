@@ -4,8 +4,9 @@ import Bootstrap.Grid exposing (col, container, row)
 import Browser
 import Browser.Dom as Dom
 import Browser.Navigation as Nav
-import Html exposing (Html, h1, header, p, text)
+import Html exposing (Html, a, h1, header, p, span, text)
 import Html.Attributes exposing (attribute, class)
+import Html.Events exposing (onClick)
 import Lightning exposing (writeup)
 import Projects exposing (projectsSection)
 import Random
@@ -42,8 +43,8 @@ subtitles : List String
 subtitles =
     [ "(A reasonable subtitle) => text"
     , "(idea) => code"
-    , "ninja : idea -> code -> product"
     , "@wip"
+    , "this is randomized"
     ]
 
 
@@ -52,6 +53,7 @@ type Msg
     | LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
     | NoOp
+    | ReRandomize
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -85,6 +87,9 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
+        ReRandomize ->
+            ( model, randomString subtitles )
+
 
 randomString : List String -> Cmd Msg
 randomString l =
@@ -101,10 +106,10 @@ myGeneration tup =
             Subtitle ""
 
 
-view : Model -> Browser.Document msg
+view : Model -> Browser.Document Msg
 view model =
     let
-        page : Model -> Html msg
+        page : Model -> Html Msg
         page =
             case urlToPage model.url of
                 Main ->
@@ -135,7 +140,7 @@ urlToPage url =
             Main
 
 
-sectionWithHeader : Model -> Html msg -> Html msg
+sectionWithHeader : Model -> Html Msg -> Html Msg
 sectionWithHeader model section =
     container [ attribute "id" "container", class "col-lg-8" ]
         [ jumbotron model
@@ -143,12 +148,12 @@ sectionWithHeader model section =
         ]
 
 
-projectsPage : Model -> Html msg
+projectsPage : Model -> Html Msg
 projectsPage model =
     sectionWithHeader model projectsSection
 
 
-lightningPage : Model -> Html msg
+lightningPage : Model -> Html Msg
 lightningPage model =
     sectionWithHeader model writeup
 
@@ -161,7 +166,12 @@ type alias Model =
     }
 
 
-jumbotron : { a | title : String, subTitle : String } -> Html msg
+rerandomize : Html Msg
+rerandomize =
+    a [ onClick ReRandomize ] [ text "🗘" ]
+
+
+jumbotron : { a | title : String, subTitle : String } -> Html Msg
 jumbotron titles =
     row []
         [ col []
@@ -177,7 +187,11 @@ jumbotron titles =
                 , class "shadow-sm"
                 ]
                 [ h1 [ class "display-4" ] [ text titles.title ]
-                , p [ class "lead" ] [ text titles.subTitle ]
+                , p [ class "lead" ]
+                    [ rerandomize
+                    , text " "
+                    , text titles.subTitle
+                    ]
                 ]
             ]
         ]

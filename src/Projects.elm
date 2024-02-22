@@ -3,7 +3,7 @@ module Projects exposing (projectsSection)
 import Bootstrap.Grid exposing (col, row)
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row
-import Html exposing (Html, a, dd, dl, dt, h3, p, text, ul)
+import Html exposing (Html, a, dd, dl, dt, h2, p, text, ul)
 import Html.Attributes exposing (class, href)
 import Route exposing (Blogs(..), Route(..), toFragment)
 
@@ -116,7 +116,7 @@ projectsSection : Html msg
 projectsSection =
     row [ Bootstrap.Grid.Row.attrs [ class "mt-4" ] ]
         [ col [ Col.topMd ]
-            [ h3 [ class "text-center" ] [ text "Projects" ]
+            [ h2 [ class "text-center" ] [ text "Projects" ]
             , ul [ class "list-group list-group-flush" ] <|
                 List.map project projectsDefinitions
             ]
