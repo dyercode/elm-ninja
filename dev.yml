@@ -1,5 +1,9 @@
 commands:
-  package: rm -rf dist && yarn install && yarn build && cnt build
+  package: 
+    - rm -rf dist 
+    - yarn install 
+    - yarn build 
+    - cnt build
   check: 
     - elm-format --validate src/
     - elm-test 
