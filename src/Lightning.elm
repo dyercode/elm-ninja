@@ -46,29 +46,29 @@ writeup =
                    """ ]
 
         {-
-                   , h3 [] [ text "Hardware" ]
-                   , p [] [ text """
-           The hardware setup is simple, and should be easy enough to replicate on any micro with an ADC.
-                   """ ]
-                   , h3 [] [ text "Logic Section" ]
-                   , h2 [] [text " Step 1 - Detect the Flash"]
-                   , p [] [ text """
-           I wired up just the photoresistor to one of the micro's ADC's and wrote a loop to print out the value
-           above a certain threshold. On my first attempt the telegraphing flash maxed out the sensor. This was
-           super convenient, but unfortunately a side effect of mis-wiring the photoresistor to 5V instead of the
-           Pi Pico's rated 3.3V.
-           """ ]
-                   , p [] [ text """
-           To avoid needing to sift through too much data I picked some arbitrary values above which to print at,
-           somewhere above 0x9F. This worked pretty well in the poorly lit room. I did run into a few gotchas.
-           The value printed was high for long after the flash had ended. I'm pretty sure this was partly from
-           the 5V mistake, and partly from the tight loop going too fast and the serial printing being slow. So
-           throttled the loop to 60fps (though the game only runs at 30fps on Switch)  so the So
-           detecting lightning is simply checking that the light has stayed high for long enough, I went with 6
-           frames. The Pi Pico runs pretty fast so I throttle the main loop to around 60fps
-                   """ ]
-        , h3 [] [ text "Source Code" ]
-        , a [ href "https://github.com/dyercode/" ] [ text "Github Repo with C code and Schematic coming soon" ]
+                      , h3 [] [ text "Hardware" ]
+                      , p [] [ text """
+              The hardware setup is simple, and should be easy enough to replicate on any micro with an ADC.
+                      """ ]
+                      , h3 [] [ text "Logic Section" ]
+                      , h2 [] [text " Step 1 - Detect the Flash"]
+                      , p [] [ text """
+              I wired up just the photoresistor to one of the micro's ADC's and wrote a loop to print out the value
+              above a certain threshold. On my first attempt the telegraphing flash maxed out the sensor. This was
+              super convenient, but unfortunately a side effect of mis-wiring the photoresistor to 5V instead of the
+              Pi Pico's rated 3.3V.
+              """ ]
+                      , p [] [ text """
+              To avoid needing to sift through too much data I picked some arbitrary values above which to print at,
+              somewhere above 0x9F. This worked pretty well in the poorly lit room. I did run into a few gotchas.
+              The value printed was high for long after the flash had ended. I'm pretty sure this was partly from
+              the 5V mistake, and partly from the tight loop going too fast and the serial printing being slow. So
+              throttled the loop to 60fps (though the game only runs at 30fps on Switch)  so the So
+              detecting lightning is simply checking that the light has stayed high for long enough, I went with 6
+              frames. The Pi Pico runs pretty fast so I throttle the main loop to around 60fps
+                      """ ]
+           , h3 [] [ text "Source Code" ]
+           , a [ href "https://github.com/dyercode/" ] [ text "Github Repo with C code and Schematic coming soon" ]
         -}
         , h3 [] [ text "In Action" ]
         , p [] [ text "A short vid of the device in action" ]
