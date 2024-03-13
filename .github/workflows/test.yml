@@ -26,7 +26,8 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: dyercode/elm-ninja
-          files: .coverage/info.json
+          fixes:
+            - ".coverage::"
   build:
     if: success() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
