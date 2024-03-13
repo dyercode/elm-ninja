@@ -23,10 +23,10 @@ jobs:
       - run: yarn elm-coverage
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
-        files: .coverage/info.json
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: dyercode/elm-ninja
+          files: .coverage/info.json
   build:
     if: success() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
