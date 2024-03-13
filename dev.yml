@@ -8,3 +8,4 @@ commands:
     - elm-format --validate src/
     - elm-test 
     - elm-review src/ tests/
+  run: yarn dev

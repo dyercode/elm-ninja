@@ -4,7 +4,7 @@ import Bootstrap.Grid exposing (col, container, row)
 import Browser
 import Browser.Dom as Dom
 import Browser.Navigation as Nav
-import Html exposing (Html, a, h1, header, p, span, text)
+import Html exposing (Html, h1, header, p, span, text)
 import Html.Attributes exposing (attribute, class)
 import Html.Events exposing (onClick)
 import Lightning exposing (writeup)

@@ -27,6 +27,7 @@ header {
 
 .text-button {
   cursor: pointer;
+  user-select: none;
 }
 
 .text-button:hover {
