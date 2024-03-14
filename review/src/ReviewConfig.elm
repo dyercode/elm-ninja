@@ -11,6 +11,7 @@ when inside the directory containing this file.
 
 -}
 
+import CognitiveComplexity
 import Docs.ReviewAtDocs
 import NoConfusingPrefixOperator
 import NoDebug.Log
@@ -31,6 +32,7 @@ import NoUnused.Patterns
 import NoUnused.Variables
 import Review.Rule as Rule exposing (Rule)
 import Simplify
+import NoUnnecessaryTrailingUnderscore
 
 
 config : List Rule
@@ -55,4 +57,7 @@ config =
     , NoUnused.Patterns.rule
     , NoUnused.Variables.rule
     , Simplify.rule Simplify.defaults
+    , CognitiveComplexity.rule 10
+    , NoUnnecessaryTrailingUnderscore.rule
+    , NoSimpleLetBody.rule
     ]
