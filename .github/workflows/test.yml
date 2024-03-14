@@ -20,7 +20,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: yarn test
-      - run: yarn elm-coverage
+      - run: yarn elm-coverage -r codecov
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
         with:
