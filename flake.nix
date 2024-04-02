@@ -21,9 +21,9 @@
             podman
             buildah
             fish
-            cnt.defaultPackage.${system}
-            dev.packages.${system}.default
-          ];
+          ] ++
+          (map (x: x.packages.${system}.default) [dev cnt]
+          );
 
           shellHook = ''
             export RUNNER="podman"
