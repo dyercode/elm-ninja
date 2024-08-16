@@ -23,6 +23,7 @@ import NoMissingTypeAnnotationInLetIn
 import NoMissingTypeExpose
 import NoPrematureLetComputation
 import NoSimpleLetBody
+import NoUnoptimizedRecursion
 import NoUnused.CustomTypeConstructorArgs
 import NoUnused.CustomTypeConstructors
 import NoUnused.Dependencies
@@ -58,6 +59,7 @@ config =
     , NoUnused.Variables.rule
     , Simplify.rule Simplify.defaults
     , CognitiveComplexity.rule 10
+    , NoUnoptimizedRecursion.rule (NoUnoptimizedRecursion.optOutWithComment "IGNORE TCO")
     , NoUnnecessaryTrailingUnderscore.rule
     , NoSimpleLetBody.rule
     ]
