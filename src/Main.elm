@@ -8,6 +8,7 @@ import Html exposing (Html, h1, header, p, span, text)
 import Html.Attributes exposing (attribute, class)
 import Html.Events exposing (onClick)
 import Lightning exposing (writeup)
+import ProjectData
 import Projects exposing (projectsSection)
 import Random
 import Random.List exposing (choose)
@@ -150,7 +151,7 @@ sectionWithHeader model section =
 
 projectsPage : Model -> Html Msg
 projectsPage model =
-    sectionWithHeader model projectsSection
+    sectionWithHeader model (projectsSection ProjectData.projectsDefinitions)
 
 
 lightningPage : Model -> Html Msg

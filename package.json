@@ -4,22 +4,24 @@
   "source": "index.html",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel src/index.html",
+    "dev": "parcel ./src/index.html",
     "build": "parcel build src/index.html",
     "test": "elm-format --validate src/ && elm-test",
     "lint": "elm-review",
     "format": "elm-format src/"
   },
   "devDependencies": {
-    "@parcel/transformer-elm": "^2.12.0",
-    "@parcel/transformer-sass": "^2.12.0",
+    "@parcel/core": "^2.13.0",
+    "@parcel/transformer-elm": "^2.13.0",
+    "@parcel/transformer-sass": "^2.13.0",
+    "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "elm": "^0.19.1-6",
     "elm-coverage": "^0.4.1",
     "elm-format": "^0.8.7",
     "elm-test": "0.19.1-revision12",
-    "parcel": "^2.12.0",
-    "sass": "^1.79.4"
+    "parcel": "^2.13.0",
+    "sass": "^1.80.7"
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.1"
 }
