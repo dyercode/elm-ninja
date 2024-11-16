@@ -13,14 +13,13 @@ jobs:
         node-version: [20]
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: yarn install
-      - run: yarn test
-      - run: yarn elm-coverage -r codecov
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@8887e596b4ee1134dae06b98d573bd674693f47c
+      - name: Run checks
+        run: nix develop --command bash -c "dev check"
+      - name: Run coverage
+        run: nix develop --command bash -c "elm-coverage -r codecov"
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5.0.0
         with:

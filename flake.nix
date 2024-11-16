@@ -28,8 +28,12 @@
             with pkgs;
             [
               yarn-berry
+              elmPackages.elm
               elmPackages.elm-json
               elmPackages.elm-coverage
+              elmPackages.elm-format
+              elmPackages.elm-test
+              elmPackages.elm-review
               podman
               buildah
               fish
